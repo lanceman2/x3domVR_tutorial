@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../x3dom.css" />
+    <script src="../x3dom.js"></script>
+    <script>
+    function main()
+    {
+        var transNode = document.getElementById('move');
+        var mat = x3dom.fields.SFMatrix4f.parseRotation('1 0 0 0');
+        var z = Math.random()*2.0 - 1.0,
+            y = Math.random()*2.0 - 1.0,
+            x = Math.random()*2.0 - 1.0;
+        var n = Math.sqrt(x*x + y*y + z*z);
+                x /= n, y /= n, z /= n;
+
+        // This is the rate at which we change the direction that
+        // we are rotating.
+        var rate = 0.02;
+        setInterval(
+            function(){
+
+                // pick a random vector direction
+                var rz = Math.random()*2.0 - 1.0,
+                    ry = Math.random()*2.0 - 1.0,
+                    rx = Math.random()*2.0 - 1.0;
+
+                // Normalize this direction
+                n = Math.sqrt(rx*rx + ry*ry + rz*rz);
+                rx /= n, ry /= n, rz /= n;
+
+                // change our direction a little in this direction
+                x += rate*rx;
+                y += rate*ry;
+                z += rate*rz;
+
+                // keep our direction normalized
+                var n = Math.sqrt(x*x + y*y + z*z);
+                x /= n, y /= n, z /= n;
+
+                // make a "small rotation" rotation matrix that
+                // rotates in this slightly changed direction.
+                var rmat= x3dom.fields.SFMatrix4f.parseRotation( '' +
+                    x + ' ' + y + ' ' + z + ' 0.004');
+
+                // Rotation
+                mat = mat.mult(rmat);
+                transNode.setFieldValue("matrix", mat);
+            },
+            10);
+    }
+    </script>
+
+</head>
+
+<body onload='main()'>
+
+    <h2>This object smoothly rotates at a constant rate in a
+        randomly changing direction</h2>
+
+     <x3d width="800px" height="800px">
+        <scene>
+            <matrixtransform id="move">
+ 	        <shape>
+                    <appearance>
+          	        <material diffuseColor="0.6 0.6 0.3"/>
+        	    </appearance>
+        	    <box/>
+                </shape>
+                <transform translation='2 0 0'>
+                    <transform rotation='0 0 1 -1.5708'>
+                        <shape>
+                            <appearance>
+          	                <material diffuseColor="1 0 0"/>
+        	            </appearance>
+        	            <cone/>
+                        </shape>
+                    </transform>
+                </transform>
+                <transform translation='0 2 0'>
+                    <transform rotation='0 0 1 0'>
+                        <shape>
+                            <appearance>
+          	                <material diffuseColor="0 1 0"/>
+        	            </appearance>
+        	            <cone/>
+                        </shape>
+                    </transform>
+                </transform>
+                <transform translation='0 0 2'>
+                    <transform rotation='1 0 0 1.5708'>
+                        <shape>
+                            <appearance>
+          	                <material diffuseColor="0 0 1"/>
+        	            </appearance>
+        	            <cone/>
+                        </shape>
+                    </transform>
+                </transform>
+            </matrixtransform>
+        </scene>
+    </x3d>
+ 
+
+</body>
+</html>

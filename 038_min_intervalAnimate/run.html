@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../x3dom.css" />
+    <script src="../x3dom.js"></script>
+    <script>
+    function main()
+    {
+        var transNode = document.getElementById('move');
+        var mat = x3dom.fields.SFMatrix4f.parseRotation('0 0 1 0');
+        var rmat= x3dom.fields.SFMatrix4f.parseRotation('0.70709 0.70709 0 0.00707');
+        setInterval(
+            function(){
+                mat = mat.mult(rmat);
+                transNode.setFieldValue("matrix", mat);
+            },
+            10);
+    }
+    </script>
+
+</head>
+
+<body onload='main()'>
+
+    <h2>This box rotates at a constant rate about a fixed axis</h2>
+
+    <x3d width="800px" height="800px">
+        <scene>
+            <matrixtransform id="move">
+ 	        <shape>
+                    <appearance>
+          	        <material diffuseColor="1 0.3 0.8"/>
+        	    </appearance>
+        	    <box/>
+                </shape>
+            </matrixtransform>
+        </scene>
+    </x3d>
+ 
+</body>
+</html>

@@ -1,0 +1,24 @@
+This is a progression of x3DOM, x3d, javascript, HTML5, and CSS
+examples that run in a browser.
+
+Ports:
+  Currently using firefox on Xubuntu 10.04 (and 16.04).
+
+Examples are in numerical order in directories named:
+
+
+    ###_min_*   minimal code in order to get the concept
+
+    ###_x_*     there is some superfluous code
+
+    ###_xx_*    there is even more code
+
+
+In theory these examples should work from local files via URL
+  file://home/USER/x3domVR_tutorial/
+as well as:
+  http://localhost/x3domVR_tutorial/run_index.php
+or
+  http://localhost/x3domVR_tutorial/
+
+

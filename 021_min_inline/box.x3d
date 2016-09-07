@@ -1,0 +1,10 @@
+<X3D>
+  <Scene>
+      <Shape >
+        <Appearance>
+          <Material diffuseColor="1 0 0"/>
+        </Appearance>
+        <Box />
+      </Shape>
+  </Scene>
+</X3D>
