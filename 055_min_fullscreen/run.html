@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="UTF-8"/>
+    <!-- This CSS is needed to make the x3d a good width and height -->
+    <link rel="stylesheet" href="../x3dom.css" />
+    <style>
+        /* Make colors consistant between fullscreen and non-fullscreen */
+        body { background-color: #000; color: #FFF; }
+        h2 { background-color: #999; }
+        #x3d { width: 100%; height: 100%; }
+    </style>
+    <script src="../x3dom.js"></script>
+    <script>
+
+        var sec;
+        var pfx = ["webkit", "moz", "ms", "o", ""];
+
+        function main() {
+
+            sec = document.getElementById('sec');
+        }
+
+    // Credit:
+    // https://www.sitepoint.com/html5-full-screen-api/
+
+        function RunPrefix(obj, method) {
+	    var p = 0, m, t;
+	    while(p < pfx.length && !obj[m]) {
+	        m = method;
+	        if(pfx[p] == "")
+	            m = m.substr(0,1).toLowerCase() + m.substr(1);
+		    m = pfx[p] + m;
+	        t = typeof obj[m];
+	        if(t != "undefined") {
+                    // save the prefix we found
+		    pfx = [pfx[p]];
+		    return t == "function" ? obj[m]() : obj[m];
+	        }
+	        p++;
+	    }
+        }
+
+        function fullscreen() {
+ 
+	    if(!RunPrefix(document, "FullScreen") && !RunPrefix(document, "IsFullScreen"))
+		RunPrefix(sec, "RequestFullScreen");
+        }
+
+    </script>
+
+</head>
+
+<body onload='main()'>
+
+    <h2 onclick='fullscreen();'>Click Here to enter fullscreen</h2>
+
+    <section id=sec>
+        <x3d id=x3d>
+            <scene id=scene>
+                <inline url="../gnome.x3d"/>
+            </scene>
+        </x3d>
+    </section>
+
+</body>
+</html>

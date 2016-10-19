@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../x3dom.css" />
+    <style>
+        h2 { background-color: #AAA; }
+        #x3d { width: 100%; height: 100%; }
+    </style>
+    <script src="../x3dom.js"></script>
+    <script src="../RunPrefix.js"></script>
+    <script>
+    var sec;
+
+    function main() {
+        sec = document.getElementById('sec');
+    }
+
+    function fullscreen() {
+ 
+        if(RunPrefix(document, "FullScreen") ||
+                RunPrefix(document, "IsFullScreen"))
+            RunPrefix(document, "CancelFullScreen");
+        else
+	    RunPrefix(sec, "RequestFullScreen");
+    }
+    </script>
+
+</head>
+
+<body onload='main()' onclick='fullscreen();'>
+
+    <h2>This uses clicking anywhere to enter and leave fullscreen which interferes
+      with the default x3d interaction, and background color is not
+      consistent</h2>
+
+    <section id=sec>
+        <x3d id=x3d>
+            <scene>
+                <inline url="../gnome.x3d"/>
+            </scene>
+        </x3d>
+    </section>
+
+</body>
+</html>
