@@ -62,7 +62,7 @@ int main(int argc, const char **argv)
     root_window = DefaultRootWindow(dpy);
 
     XSelectInput(dpy, root_window, KeyReleaseMask);
-    XWarpPointer(dpy, None, root_window, 0, 0, 0, 0, 300, 300);
+    XWarpPointer(dpy, None, root_window, 0, 0, 0, 0, 400, 400);
 
     // XSendEvent() is useless given that clients can tell when events
     // come from it.
