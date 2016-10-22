@@ -19,6 +19,7 @@ copies =\
  045_xx_intervalAnimate/gnome.x3d\
  055_min_fullscreen/gnome.x3d\
  060_x_fullscreen/gnome.x3d\
+ 065_x_fullscreen/gnome.x3d\
  069_xx_fullscreen/gnome.x3d
 
 build: $(get_x3dom) $(copies) firefoxProfile $(cbins)
