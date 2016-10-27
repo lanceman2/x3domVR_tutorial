@@ -16,11 +16,13 @@ clickWindow_LDFLAGS = -lX11 -lXtst
 printPointer_LDFLAGS = -lX11
 
 copies =\
+ 023_x_inlineGnome/gnome.x3d\
  045_xx_intervalAnimate/gnome.x3d\
  055_min_fullscreen/gnome.x3d\
  060_x_fullscreen/gnome.x3d\
  065_x_fullscreen/gnome.x3d\
- 069_xx_fullscreen/gnome.x3d
+ 069_xx_fullscreen/gnome.x3d\
+ 078_x_printViewMatrices/gnome.x3d
 
 build: $(get_x3dom) $(copies) firefoxProfile $(cbins)
 
