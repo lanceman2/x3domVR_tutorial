@@ -12,20 +12,6 @@
 
 // http://doc.x3dom.org/tutorials/applicationTutorials/simpleAR/index.html
 
-    function getEveryThing(obj) {
-        var result = [];
-        for (var id in obj) {
-
-            result.push(id.toString());
-        }
-        result.sort();
-
-        result = result.join("\n");
-
-        return result;
-    }
-
-    var count = 0;
     var runtime;
 
     function myhandler(ev)
@@ -42,45 +28,12 @@
             runtime.getWorldToCameraCoordinatesMatrix() +
             "\n\n";
 
-
         document.getElementById("text").innerHTML = text;
 
         document.getElementById("count").
             innerHTML = (count++).toString();
 
         return true;
-
-        /*
-       
-        var vf = document.getElementById("vf");
-
-        vf.setAttribute('position', '0,0,10');
-        vf.setAttribute('fieldOfView', '0.785398');
-        vf.setAttribute('zNear', '0.01');
-        vf.setAttribute('zFar', '40');
-        vf.setAttribute('centerOfRotation', '0,0,0');
-        vf.setAttribute('description', 'fustum_viewpoint');
-        vf.setAttribute('fieldOfView', '0.785398');
-        vf.setAttribute('isActive', 'true');
-        vf.setAttribute('metadata', 'X3DMetadataObject');
-        vf.setAttribute('orientation', '0,0,0,1');
-        vf.setAttribute('position', '0,0,10');
-
-        proj._00 = 1;
-        proj._11 = 1;
-
-        proj._02 = 0;
-        proj._12 = 0;
-        proj._22 = 1;
-        proj._33 = 1;
-
-
-        document.getElementById("text").innerHTML = vf.getAttribute('projection').toString();
-
-        return true;
-
-        */
-
     }
 
     function main()
@@ -96,24 +49,27 @@
 
 <body onload='main()' on>
 
-    <div>
+    <h2>Prints matrices from the X3D runTime</h2>
      <x3d id="x3d" width="600px" height="600px"
             onmousemove='return myhandler(event)'
             onmouseup='return myhandler(event)'
             onscroll='return myhandler(event)'
             onmousedown='return myhandler(event)'>
         <scene id=scene>
-            <matrixtransform id="move">
+        <Viewpoint position="0.90760 6.95982 -1.95404"
+            orientation="-0.98211 0.17119 0.07846 1.95571"
+            zNear="2.55064" zFar="12.13980"
+            description="defaultX3DViewpointNode"></Viewpoint>
                 <inline url="gnome.x3d"/>
-            </matrixtransform>
         </scene>
     </x3d>
-    </div>
 
     <br/>
     <h1 style="clear: both;">runtime matrices:</h1>
 
-    <pre id=text>text that will be replaced</pre>
+    <pre id=text>
+This text will be replaced with matrix values
+when you move the pointer into the X3D window.</pre>
 
 </body>
 </html>
